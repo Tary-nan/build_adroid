@@ -1,11 +1,12 @@
 // import 'package:buildadroid/Expenses/FeatureManager/ExpenseManager.dart';
 // import 'package:buildadroid/Expenses/FeatureManager/FormManager.dart';
 // import 'package:buildadroid/Expenses/Home.dart';
+import 'package:buildadroid/StateManagement/main.dart';
 import 'package:buildadroid/TimeNavigation/FeatureManager/CategoryManager.dart';
 import 'package:buildadroid/TimeNavigation/FeatureManager/FiltersManager.dart';
 import 'package:buildadroid/TimeNavigation/FeatureManager/MealsManager.dart';
 import 'package:buildadroid/TimeNavigation/FeatureManager/TabsManager.dart';
-import 'package:buildadroid/TimeNavigation/Models/Meals.dart';
+// import 'package:buildadroid/TimeNavigation/Models/Meals.dart';
 import 'package:buildadroid/TimeNavigation/Pages/Category_meal_screen.dart';
 // import 'package:buildadroid/TimeNavigation/Pages/Category_screen.dart';
 import 'package:buildadroid/TimeNavigation/Pages/Filters_screen.dart';
@@ -26,7 +27,7 @@ import 'package:sprinkle/Provider.dart';
 GetIt sl = GetIt.instance;
 
 void main(){
-  runApp(MyApp());
+  runApp(MyAppStateManagement());
 }
 /*
 class MyApp extends StatelessWidget {

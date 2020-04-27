@@ -30,10 +30,10 @@ class MealsManager implements Manager {
     }
   }
 
-  void isFavorite(String mealId)=> _isfavoritesSubject.add(_favoritesMeals.any((meal)=> meal.id == mealId));
+  void isFavorite(String mealId)=> 
+    _isfavoritesSubject.add(_favoritesMeals.any((meal)=> meal.id == mealId));
 
  
-
 
   BehaviorSubject<Meal> _detailSubject = BehaviorSubject();
   BehaviorSubject<String> _complexitySubject = BehaviorSubject();
