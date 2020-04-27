@@ -37,7 +37,14 @@ class TabsScreen extends StatelessWidget{
     TabsManager manager = context.fetch<TabsManager>();
 
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: Observer<int>(
+          stream: manager.curent$,
+          onSuccess: (context, selected) {
+            return Text(_pages[selected]['title']);
+          }
+        ),
+      ),
       drawer: Drawer(
         child:  Column(
         children: <Widget>[

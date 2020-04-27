@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sprinkle/Manager.dart';
-import '../main.dart';
 import 'package:rxdart/rxdart.dart';
+import '../main.dart';
 
 abstract class AppModel with ChangeNotifier {
 
@@ -35,7 +35,7 @@ class AppModelImplementation extends AppModel implements Manager{
   void increment() => _curent.add(curentIndex$ + 1);
 
   AppModelImplementation(){
-    Future.delayed(Duration(seconds: 3)).then((_) => getIt.signalReady(this));
+    Future.delayed(Duration(seconds: 3)).then((_) => sl.signalReady(this));
   }
 
   @override

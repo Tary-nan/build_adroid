@@ -2,10 +2,12 @@
 // import 'package:buildadroid/Expenses/FeatureManager/FormManager.dart';
 // import 'package:buildadroid/Expenses/Home.dart';
 import 'package:buildadroid/TimeNavigation/FeatureManager/CategoryManager.dart';
+import 'package:buildadroid/TimeNavigation/FeatureManager/FiltersManager.dart';
 import 'package:buildadroid/TimeNavigation/FeatureManager/MealsManager.dart';
 import 'package:buildadroid/TimeNavigation/FeatureManager/TabsManager.dart';
+import 'package:buildadroid/TimeNavigation/Models/Meals.dart';
 import 'package:buildadroid/TimeNavigation/Pages/Category_meal_screen.dart';
-import 'package:buildadroid/TimeNavigation/Pages/Category_screen.dart';
+// import 'package:buildadroid/TimeNavigation/Pages/Category_screen.dart';
 import 'package:buildadroid/TimeNavigation/Pages/Filters_screen.dart';
 import 'package:buildadroid/TimeNavigation/Pages/Meals_detail_screen.dart';
 import 'package:buildadroid/TimeNavigation/Pages/tabs_screen.dart';
@@ -20,12 +22,10 @@ import 'package:sprinkle/Overseer.dart';
 
 // import 'package:buildadroid/SprinkleArchitecture.dart';
 import 'package:sprinkle/Provider.dart';
-import 'FeatureLocatorGetIt/app_model.dart';
 
-GetIt getIt = GetIt.instance;
+GetIt sl = GetIt.instance;
 
 void main(){
-  getIt.registerSingleton<AppModel>(AppModelImplementation(), signalsReady: true);
   runApp(MyApp());
 }
 /*
@@ -96,12 +96,18 @@ I/chatty  ( 7166): uid=10086(com.example.buildadroid) Thread-2 identical 28 line
 */
 
 class MyApp extends StatelessWidget {
+
+
+  
   @override
   Widget build(BuildContext context) {
+
+
     return Provider(
       data: Overseer()
       .register<CategoryManager>(()=> CategoryManager())
       .register<TabsManager>(()=> TabsManager())
+      .register<FiltersManager>(()=> FiltersManager())
       .register<MealsManager>(()=> MealsManager()),
       child: MaterialApp(
             title: 'Flutter Demo',

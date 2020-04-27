@@ -16,7 +16,7 @@ class CategoryMealsScreen extends StatelessWidget {
     String _id = routeArgs['id'];
 
     MealsManager manager = context.fetch<MealsManager>();
-    manager.searchListItem(id:_id);
+    manager.searchListItem(id: _id);
 
     return Scaffold(
       appBar: AppBar(

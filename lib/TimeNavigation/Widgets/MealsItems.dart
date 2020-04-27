@@ -46,7 +46,7 @@ class MealsItem extends StatelessWidget {
     _handlerSelectedMeal(){
       Navigator.pushNamed(context, MealDeailScreen.routeName, arguments: id).then((result){
         if(result != null){
-          removeMeals(result);
+          //removeMeals(result);
         }
       });
     }

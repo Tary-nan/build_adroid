@@ -18,7 +18,13 @@ class MealDeailScreen extends StatelessWidget {
         stream: manager.detail$,
         onSuccess: (context, Meal meal) {
           return Scaffold(
-            floatingActionButton: FloatingActionButton(onPressed: ()=> Navigator.of(context).pop(id), child: Icon(Icons.delete)),
+            floatingActionButton: FloatingActionButton(onPressed: ()=> manager.toggleFavorite(mealId: id), 
+            child:  Observer<bool>(
+              stream: manager.isFavorite$,
+              onSuccess: (context, bool favorite) {
+                return (favorite)? Icon(Icons.star, color: Colors.white,) :  Icon(Icons.star_border, color: Colors.white);
+              }
+            )),
             appBar: AppBar(
               title: Text(meal.title),
             ),

@@ -13,7 +13,7 @@ class SprikleArchitecture extends StatelessWidget {
 
         
     return Scaffold(
-      floatingActionButton: FloatingActionButton(onPressed: ()=> getIt<AppModel>().increment()),
+      floatingActionButton: FloatingActionButton(onPressed: ()=> sl<AppModel>().increment()),
        appBar: AppBar(title: Text("quiz bloc")),
        body: Observer(
          stream: manager.collection$,
@@ -24,7 +24,7 @@ class SprikleArchitecture extends StatelessWidget {
                return Column(
                  children: <Widget>[
                    StreamBuilder<Object>(
-                     stream: getIt<AppModel>().counter$,
+                     stream: sl<AppModel>().counter$,
                      builder: (context, snapshot) {
                        return Text(snapshot.data.toString());
                      }
