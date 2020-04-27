@@ -22,6 +22,7 @@ class MealDeailScreen extends StatelessWidget {
             child:  Observer<bool>(
               stream: manager.isFavorite$,
               onSuccess: (context, bool favorite) {
+                manager.isFavorite(id);
                 return (favorite)? Icon(Icons.star, color: Colors.white,) :  Icon(Icons.star_border, color: Colors.white);
               }
             )),

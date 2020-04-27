@@ -28,7 +28,6 @@ class MealsManager implements Manager {
 
       _favoritesSubject.add(_favoritesMeals);
     }
-    isFavorite(mealId);
   }
 
   void isFavorite(String mealId)=> _isfavoritesSubject.add(_favoritesMeals.any((meal)=> meal.id == mealId));
