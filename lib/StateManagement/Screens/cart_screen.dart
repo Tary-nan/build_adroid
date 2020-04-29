@@ -1,4 +1,5 @@
-import 'package:buildadroid/StateManagement/FeatureProviders/cart.dart';
+import 'package:buildadroid/StateManagement/FeatureProviders/cart.dart' show Cart;
+import 'package:buildadroid/StateManagement/FeatureProviders/orders.dart';
 import 'package:buildadroid/StateManagement/Widgets/carts_item.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -22,11 +23,13 @@ class CartScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Text('Total', style: TextStyle(fontSize:20),),
-        
                 Row(
                   children: <Widget>[
-                    Consumer<Cart>(builder: (_, cartItems, __)=> Chip(label: Text(cartItems.totalAmount.toString(), style: TextStyle(color: Colors.white),),backgroundColor: Theme.of(context).primaryColor,),),
-                    FlatButton(onPressed: (){}, child: Text("ORDER NOW", style: TextStyle(fontSize:13)), textColor: Theme.of(context).primaryColor,),
+                    Chip(label: Text('\$${cart.totalAmount.toStringAsFixed(2)}', style: TextStyle(color: Colors.white),),backgroundColor: Theme.of(context).primaryColor,),
+                    FlatButton(onPressed: (){
+                      Provider.of<Orders>(context, listen: false).addOrder(carts: cart.items.values.toList(), amount: cart.totalAmount);
+                      cart.clear();
+                    }, child: Text("ORDER NOW", style: TextStyle(fontSize:13)), textColor: Theme.of(context).primaryColor,),
                   ],)
           ]),
             ),),

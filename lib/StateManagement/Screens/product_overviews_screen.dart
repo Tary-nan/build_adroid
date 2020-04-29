@@ -1,6 +1,7 @@
 import 'package:buildadroid/StateManagement/FeatureProviders/cart.dart';
 import 'package:buildadroid/StateManagement/FeatureProviders/provider.dart';
 import 'package:buildadroid/StateManagement/Screens/cart_screen.dart';
+import 'package:buildadroid/StateManagement/Widgets/app_drawer.dart';
 import 'package:buildadroid/StateManagement/Widgets/badge.dart';
 import 'package:buildadroid/StateManagement/Widgets/products_grid.dart';
 import 'package:flutter/material.dart';
@@ -15,9 +16,10 @@ class ProductOverviewsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
 
     final manager = Provider.of<Products>(context,);
-    final cart = Provider.of<Cart>(context, listen: false);
+    //final cart = Provider.of<Cart>(context, listen: false);
 
     return  Scaffold(
+      drawer: AppDrawer(),
       appBar: AppBar(
         title:Text('Products Overviews'),
         actions: <Widget>[

@@ -1,6 +1,8 @@
 import 'package:buildadroid/StateManagement/FeatureProviders/cart.dart';
+import 'package:buildadroid/StateManagement/FeatureProviders/orders.dart';
 import 'package:buildadroid/StateManagement/FeatureProviders/provider.dart';
 import 'package:buildadroid/StateManagement/Screens/cart_screen.dart';
+import 'package:buildadroid/StateManagement/Screens/order_Screen.dart';
 import 'package:buildadroid/StateManagement/Screens/product_detail_screen.dart';
 import 'package:buildadroid/StateManagement/Screens/product_overviews_screen.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +15,7 @@ class MyAppStateManagement extends StatelessWidget {
       providers: [
         ChangeNotifierProvider.value(value: Products()),
         ChangeNotifierProvider.value(value: Cart()),
+        ChangeNotifierProvider.value(value: Orders()),
       ],
       child: MaterialApp(
         title: "My boutic shop",
@@ -23,6 +26,7 @@ class MyAppStateManagement extends StatelessWidget {
           '/': (context)=> ProductOverviewsScreen(),
           ProductDetailScreen.routeName : (context)=> ProductDetailScreen(),
           CartScreen.routeName : (context)=> CartScreen(),
+          OrdersScreen.routeName : (context)=> OrdersScreen(),
         },
         theme: ThemeData(
           primaryColor: Colors.purple,
