@@ -32,8 +32,10 @@ class Cart with ChangeNotifier {
       return;
     }
     if(_items[productId].quantity > 1){
+      print(_items[productId].quantity > 1);
       _items.update(productId, (existingCardItem)=> CartItem(id: existingCardItem.id, title: existingCardItem.title, price: existingCardItem.price, quantity: existingCardItem.quantity -1));
     }else{
+      print("remove when ${_items[productId].quantity > 1} == false");
       _items.remove(productId);
     }
     notifyListeners();

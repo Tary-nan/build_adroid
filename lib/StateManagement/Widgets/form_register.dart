@@ -117,14 +117,13 @@ class _FormRegisterState extends State<FormRegister> {
       return EnsureVisibleWhenFocused(
         focusNode: _titleFocus,
         child: TextFormField(
-          focusNode: _priceFocus,
           initialValue: _initValues['title'],
           enableInteractiveSelection: true,
           keyboardType: TextInputType.text,
           textInputAction: TextInputAction.next,
-          // onFieldSubmitted: (_) {
-          //   FocusScope.of(context).requestFocus(_priceFocus);
-          // },
+          onFieldSubmitted: (_) {
+            FocusScope.of(context).requestFocus(_priceFocus);
+          },
           validator: (value) {
             if (value.isEmpty) {
               return 'Please provide a value.';
@@ -155,12 +154,13 @@ class _FormRegisterState extends State<FormRegister> {
         focusNode: _priceFocus,
         child: TextFormField(
           initialValue: _initValues['price'],
+          focusNode: _priceFocus,
           enableInteractiveSelection: true,
           keyboardType: TextInputType.text,
           textInputAction: TextInputAction.next,
-          // onFieldSubmitted: (_) {
-          //   FocusScope.of(context).requestFocus(_descriptionFocus);
-          // },
+          onFieldSubmitted: (_) {
+            FocusScope.of(context).requestFocus(_descriptionFocus);
+          },
           validator: (value) {
             if (value.isEmpty) {
                 return 'Please enter a price.';
