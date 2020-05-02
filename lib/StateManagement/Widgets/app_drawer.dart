@@ -1,3 +1,4 @@
+import 'package:buildadroid/StateManagement/Screens/list_product_screen.dart';
 import 'package:buildadroid/StateManagement/Screens/order_Screen.dart';
 import 'package:flutter/material.dart';
 
@@ -26,6 +27,15 @@ class AppDrawer extends StatelessWidget {
             onTap: () {
               Navigator.of(context)
                   .pushReplacementNamed(OrdersScreen.routeName);
+            },
+          ),
+           Divider(),
+          ListTile(
+            leading: Icon(Icons.payment),
+            title: Text('Edit product'),
+            onTap: () {
+              Navigator.of(context)
+                  .pushReplacementNamed(ListProductScreen.routeName);
             },
           ),
         ],

@@ -2,6 +2,8 @@ import 'package:buildadroid/StateManagement/FeatureProviders/cart.dart';
 import 'package:buildadroid/StateManagement/FeatureProviders/orders.dart';
 import 'package:buildadroid/StateManagement/FeatureProviders/provider.dart';
 import 'package:buildadroid/StateManagement/Screens/cart_screen.dart';
+import 'package:buildadroid/StateManagement/Screens/edit_product_screen.dart';
+import 'package:buildadroid/StateManagement/Screens/list_product_screen.dart';
 import 'package:buildadroid/StateManagement/Screens/order_Screen.dart';
 import 'package:buildadroid/StateManagement/Screens/product_detail_screen.dart';
 import 'package:buildadroid/StateManagement/Screens/product_overviews_screen.dart';
@@ -27,6 +29,8 @@ class MyAppStateManagement extends StatelessWidget {
           ProductDetailScreen.routeName : (context)=> ProductDetailScreen(),
           CartScreen.routeName : (context)=> CartScreen(),
           OrdersScreen.routeName : (context)=> OrdersScreen(),
+          ListProductScreen.routeName : (context)=> ListProductScreen(),
+          EditProductScreen.routeName : (context)=> EditProductScreen(),
         },
         theme: ThemeData(
           primaryColor: Colors.purple,

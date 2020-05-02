@@ -56,7 +56,19 @@ class Products with ChangeNotifier {
     return [..._items];
   }
 
+  void addItem(Product product){
+    _items.add(product);
+    // ou
+    //_items.insert(0, product);
+    notifyListeners();
+  }
+
   List<Product> get favoriteOnly =>  _items.where((productItem)=> productItem.isfavorite).toList();
 
   Product findById({String id})=> _items.firstWhere((product)=> product.id == id);
+
+  void removeProduct(String id){
+    _items.removeWhere((productItem)=> productItem.id == id);
+    notifyListeners();
+  }
 }
