@@ -38,13 +38,10 @@ class _FormRegisterState extends State<FormRegister> {
 
   void _updateImageUrl() {
     if (!_imageUrlFocus.hasFocus) {
-      if ((!_imageUrlController.text.startsWith('http') &&
-              !_imageUrlController.text.startsWith('https')) ||
-          (!_imageUrlController.text.endsWith('.png') &&
-              !_imageUrlController.text.endsWith('.jpg') &&
-              !_imageUrlController.text.endsWith('.jpeg'))) {
-        return;
-      }
+      // if ((!_imageUrlController.text.startsWith('http') && !_imageUrlController.text.startsWith('https')) || (!_imageUrlController.text.endsWith('.png') &&  !_imageUrlController.text.endsWith('.jpg') &&
+      //         !_imageUrlController.text.endsWith('.jpeg'))) {
+      //   return;
+      // }
       setState(() {});
     }
   }
@@ -57,12 +54,9 @@ class _FormRegisterState extends State<FormRegister> {
     _formKey.currentState.save();
     if (_editedProduct.id != null) {
       print('/////////////---- SUCCESS EDIT ----/////');
-      print(_editedProduct);
-
-      // Provider.of<Products>(context, listen: false)
-      //     .updateProduct(_editedProduct.id, _editedProduct);
+      Provider.of<Products>(context, listen: false).updateItem(_editedProduct.id, _editedProduct);
     } else {
-      // Provider.of<Products>(context, listen: false).addProduct(_editedProduct);
+      Provider.of<Products>(context, listen: false).addItem(_editedProduct);
       print('/////////////---- SUCCESS REGISTER ----/////');
       print(_editedProduct);
     }
@@ -75,27 +69,24 @@ class _FormRegisterState extends State<FormRegister> {
     super.initState();
   }
 
-
-  @override
+@override
   void didChangeDependencies() {
-    print("didChangeDepencies");
-    if (_isInit) {
-      final productId = ModalRoute.of(context).settings.arguments as String;
-      print(productId);
-      if (productId != null) {
-        _editedProduct =
-            Provider.of<Products>(context, listen: false).findById(id:productId);
-        _initValues = {
-          'title': _editedProduct.title,
-          'description': _editedProduct.description,
-          'price': _editedProduct.price.toString(),
-          // 'imageUrl': _editedProduct.imageUrl,
-          'imageUrl': '',
-        };
-        _imageUrlController.text = _editedProduct.imageUrl;
-      }
-    }
-    _isInit = false;
+     print("didChangeDepencies");
+     if (_isInit) {
+        final productId = ModalRoute.of(context).settings.arguments as String;
+        print(productId);
+        if(productId != null){
+          _editedProduct = Provider.of<Products>(context, listen: false).findById(id: productId);
+          _initValues = {
+            'title': _editedProduct.title,
+            'description': _editedProduct.description,
+            'price': _editedProduct.price.toString(),
+            'imageUrl': '',
+          };
+          _imageUrlController.text = _editedProduct.imageUrl;
+        }
+     }
+     _isInit = false;
     super.didChangeDependencies();
   }
 
@@ -105,13 +96,15 @@ class _FormRegisterState extends State<FormRegister> {
     _titleFocus.dispose();
     _descriptionFocus.dispose();
     _priceFocus.dispose();
-    _imageUrlFocus.dispose();
+    _imageUrlController.dispose();
+    _imageUrlFocus.dispose(); 
     super.dispose();
   }
 
 
   @override
   Widget build(BuildContext context) {
+    print("begin");
 
     Widget _buildTitleTextFiled() {
       return EnsureVisibleWhenFocused(
@@ -175,8 +168,8 @@ class _FormRegisterState extends State<FormRegister> {
             },
           onSaved: (value) {
             _editedProduct = Product(
-                title: value,
-                price: _editedProduct.price,
+                title: _editedProduct.title,
+                price: double.parse(value),
                 description: _editedProduct.description,
                 imageUrl: _editedProduct.imageUrl,
                 id: _editedProduct.id,
@@ -200,8 +193,8 @@ class _FormRegisterState extends State<FormRegister> {
           enableInteractiveSelection: true,
           keyboardType: TextInputType.multiline,
           focusNode: _descriptionFocus,
-          textInputAction: TextInputAction.next,
-          maxLength: 3,
+          // textInputAction: TextInputAction.next,
+          maxLines: 3,
           validator: (value) {
           if (value.isEmpty) {
               return 'Please enter a description.';
@@ -213,9 +206,9 @@ class _FormRegisterState extends State<FormRegister> {
             },
           onSaved: (value) {
             _editedProduct = Product(
-                title: value,
+                title: _editedProduct.title,
                 price: _editedProduct.price,
-                description: _editedProduct.description,
+                description: value,
                 imageUrl: _editedProduct.imageUrl,
                 id: _editedProduct.id,
                 isfavorite: _editedProduct.isfavorite

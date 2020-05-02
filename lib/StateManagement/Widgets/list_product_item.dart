@@ -19,7 +19,7 @@ class ListProductItem extends StatelessWidget {
       trailing: Container(
         width: MediaQuery.of(context).size.width /4,
         child: Row(children: <Widget>[
-          IconButton(icon: Icon(Icons.edit, ), onPressed: ()=> Navigator.pushNamed(context, EditProductScreen.routeName),),
+          IconButton(icon: Icon(Icons.edit, ), onPressed: ()=> Navigator.pushNamed(context, EditProductScreen.routeName, arguments: productItem.id),),
           IconButton(icon: Icon(Icons.delete, color: Theme.of(context).errorColor,), onPressed: (){
             Scaffold.of(context).hideCurrentSnackBar();
             Scaffold.of(context).showSnackBar(SnackBar(

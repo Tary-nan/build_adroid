@@ -57,10 +57,22 @@ class Products with ChangeNotifier {
   }
 
   void addItem(Product product){
-    _items.add(product);
-    // ou
-    //_items.insert(0, product);
+    var newProduct = Product(id: DateTime.now().toString(), title: product.title, price: product.price, imageUrl: product.imageUrl, description: product.description);
+    _items.insert(0, newProduct);
     notifyListeners();
+  }
+
+  void updateItem(String productId, Product newProduct ){
+    final productIndex = _items.indexWhere((existingIndex)=> existingIndex.id == productId);
+    if (productIndex >= 0) {
+      _items[productIndex] = newProduct;
+      notifyListeners();
+      
+    }else{
+      print("... rien");
+    }
+
+
   }
 
   List<Product> get favoriteOnly =>  _items.where((productItem)=> productItem.isfavorite).toList();
