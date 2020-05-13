@@ -38,6 +38,7 @@ class _FormRegisterState extends State<FormRegister> {
 
   void _updateImageUrl() {
     if (!_imageUrlFocus.hasFocus) {
+      print('ok');
       // if ((!_imageUrlController.text.startsWith('http') && !_imageUrlController.text.startsWith('https')) || (!_imageUrlController.text.endsWith('.png') &&  !_imageUrlController.text.endsWith('.jpg') &&
       //         !_imageUrlController.text.endsWith('.jpeg'))) {
       //   return;
@@ -74,7 +75,6 @@ class _FormRegisterState extends State<FormRegister> {
      print("didChangeDepencies");
      if (_isInit) {
         final productId = ModalRoute.of(context).settings.arguments as String;
-        print(productId);
         if(productId != null){
           _editedProduct = Provider.of<Products>(context, listen: false).findById(id: productId);
           _initValues = {
@@ -132,6 +132,7 @@ class _FormRegisterState extends State<FormRegister> {
                 id: _editedProduct.id,
                 isfavorite: _editedProduct.isfavorite
                 );
+                
           },
           decoration: InputDecoration(
               labelText: "Title",

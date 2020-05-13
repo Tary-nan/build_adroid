@@ -15,5 +15,4 @@ class TabsManager implements Manager {
   void dispose() {
     _subject.close();
   }
-  
 }

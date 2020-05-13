@@ -67,12 +67,9 @@ class Products with ChangeNotifier {
     if (productIndex >= 0) {
       _items[productIndex] = newProduct;
       notifyListeners();
-      
     }else{
       print("... rien");
     }
-
-
   }
 
   List<Product> get favoriteOnly =>  _items.where((productItem)=> productItem.isfavorite).toList();

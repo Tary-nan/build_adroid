@@ -15,5 +15,4 @@ class CategoryManager implements Manager {
   void dispose() {
     _collectionSubject.close();
   }
-  
 }

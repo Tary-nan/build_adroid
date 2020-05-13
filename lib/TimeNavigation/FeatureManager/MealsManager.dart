@@ -4,6 +4,11 @@ import 'package:rxdart/rxdart.dart';
 
 class MealsManager implements Manager {
 
+  MealsManager(){
+    _collectionSubject.add(DataProviderMeal().dataMeal);
+
+  }
+
   List<Meal> _data = DataProviderMeal().dataMeal;
   List<Meal> _favoritesMeals = [];
 
@@ -68,6 +73,7 @@ class MealsManager implements Manager {
 
 
   void searchListItem({String id}){
+
   
     List<Meal> data = _data
     .where((meals)=>
@@ -120,7 +126,7 @@ class MealsManager implements Manager {
       Rx.combineLatest([gluentenFree$, vegetarian$, vegan$, lactooseFree$], (value)=> true);
 
   void submit(){
-    List<Meal> filterMealData = DataProviderMeal().dataMeal.where((meal){
+    List<Meal> filterMealData = _data.where((meal){
       if(_swicthGluenFree.value && !meal.isGlutenFree){
           return false;
       }
