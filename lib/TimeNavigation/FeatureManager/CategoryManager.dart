@@ -14,5 +14,6 @@ class CategoryManager implements Manager {
   @override
   void dispose() {
     _collectionSubject.close();
+
   }
 }

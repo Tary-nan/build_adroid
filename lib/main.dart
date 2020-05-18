@@ -1,6 +1,7 @@
 // import 'package:buildadroid/Expenses/FeatureManager/ExpenseManager.dart';
 // import 'package:buildadroid/Expenses/FeatureManager/FormManager.dart';
 // import 'package:buildadroid/Expenses/Home.dart';
+import 'package:buildadroid/ReaciveProgramming/main.dart';
 import 'package:buildadroid/StateManagement/main.dart';
 import 'package:buildadroid/TimeNavigation/FeatureManager/CategoryManager.dart';
 import 'package:buildadroid/TimeNavigation/FeatureManager/FiltersManager.dart';
@@ -27,7 +28,7 @@ import 'package:sprinkle/Provider.dart';
 GetIt sl = GetIt.instance;
 
 void main(){
-  runApp(MyAppStateManagement());
+  runApp(ReactiveProgramming());
 }
 /*
 class MyApp extends StatelessWidget {
@@ -110,6 +111,7 @@ class MyApp extends StatelessWidget {
       .register<TabsManager>(()=> TabsManager())
       .register<FiltersManager>(()=> FiltersManager())
       .register<MealsManager>(()=> MealsManager()),
+
       child: MaterialApp(
             title: 'Flutter Demo',
             theme: ThemeData(

@@ -15,6 +15,7 @@ class _FormRegisterState extends State<FormRegister> {
   final FocusNode _descriptionFocus = FocusNode();
   final FocusNode _priceFocus = FocusNode();
   final FocusNode _imageUrlFocus = FocusNode();
+  bool _loading = false;
 
   final _imageUrlController = TextEditingController();
 
@@ -47,19 +48,46 @@ class _FormRegisterState extends State<FormRegister> {
     }
   }
 
-  void _saveForm() {
+  Future<void>_saveForm()async {
     final isValid = _formKey.currentState.validate();
     if (!isValid) {
       return;
     }
     _formKey.currentState.save();
+    setState(() {
+      _loading = true;
+    });
+
     if (_editedProduct.id != null) {
-      print('/////////////---- SUCCESS EDIT ----/////');
       Provider.of<Products>(context, listen: false).updateItem(_editedProduct.id, _editedProduct);
     } else {
-      Provider.of<Products>(context, listen: false).addItem(_editedProduct);
-      print('/////////////---- SUCCESS REGISTER ----/////');
-      print(_editedProduct);
+      try {
+       await Provider.of<Products>(context, listen: false).addItem(_editedProduct).then((_){
+        setState(() {
+          _loading = false;
+        });
+
+      });
+        
+      } catch (e) {
+        await showDialog(
+          context: context,
+          builder: (ctx) => AlertDialog(
+                title: Text('An error occurred!'),
+                content: Text('Something went wrong.'),
+                actions: <Widget>[
+                  FlatButton(
+                    child: Text('Okay'),
+                    onPressed: () {
+                      Navigator.of(ctx).pop();
+                    },
+                  )
+                ],
+              ),
+        );
+      }
+
+
     }
     Navigator.of(context).pop();
   }
@@ -290,18 +318,21 @@ class _FormRegisterState extends State<FormRegister> {
         ],
       );
     }
-    return Form(
-      key: _formKey,
-      child: ListView(
-        children: <Widget>[
-          ListTile(title: _buildTitleTextFiled()),
-          ListTile(title: _buildPriceTextFiled()),
-          ListTile(title: _buildDescTextFiled()),
-          ListTile(title: _buildImageTextField()),
+    return _loading ? Center(child: CircularProgressIndicator()) : Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Form(
+        key: _formKey,
+        child: ListView(
+          children: <Widget>[
+            ListTile(title: _buildTitleTextFiled()),
+            ListTile(title: _buildPriceTextFiled()),
+            ListTile(title: _buildDescTextFiled()),
+            ListTile(title: _buildImageTextField()),
 
-        ]
+          ]
+        ),
+        
       ),
-      
     );
 
     
