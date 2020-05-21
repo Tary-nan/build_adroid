@@ -12,7 +12,7 @@ class ApplicationInitializationBloc
   @override
   Stream<ApplicationInitializationState> eventHandler(
       ApplicationInitializationEvent event, ApplicationInitializationState currentState) async* {
-
+      print(event.type);
     if (!currentState.isInitialized){
       yield ApplicationInitializationState.notInitialized();
     }

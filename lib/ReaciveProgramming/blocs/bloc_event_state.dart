@@ -10,17 +10,19 @@ abstract class BlocEventStateBase<BlocEvent, BlocState> implements BlocBase {
   BehaviorSubject<BlocState> _stateController = BehaviorSubject<BlocState>();
 
   ///
-  /// To be invoked to emit an event
+  /// j'accepte les event emit du type  Function(BlocEvent)
+  /// example: emitEvent.add(AuthManagerEvent())
   ///
   Function(BlocEvent) get emitEvent => _eventController.sink.add;
 
   ///
-  /// Current/New state
+  /// Current/Et New state
   ///
   Stream<BlocState> get state => _stateController.stream;
 
-  ///
-  /// External processing of the event
+  /// l' event emit dans emitEvent 
+  /// => declenchera une action menant à un ou plusieurs états;
+  /// => eventHandler <= l'action appeler
   ///
   Stream<BlocState> eventHandler(BlocEvent event, BlocState currentState);
 
@@ -35,9 +37,8 @@ abstract class BlocEventStateBase<BlocEvent, BlocState> implements BlocBase {
   BlocEventStateBase({
     @required this.initialState,
   }){
-    //
-    // For each received event, we invoke the [eventHandler] and
-    // emit any resulting newState
+    // Pour chaque event emit , nous appellons ou encore declanchons l' action [eventHandler]
+    // un nouvel etat est creer
     //
     _eventController.listen((BlocEvent event){
       BlocState currentState = _stateController.value ?? initialState;

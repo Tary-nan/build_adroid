@@ -8,6 +8,8 @@ import 'package:flutter/material.dart';
 
 class TabsScreen extends StatelessWidget{
 
+  static const routeName = '/tabs';
+
 
   final List<Map<String, Object>> _pages = [
     {'page': CategoryScreen(), 'title': "category" },
