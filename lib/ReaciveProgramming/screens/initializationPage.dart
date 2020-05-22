@@ -1,5 +1,7 @@
 import 'package:buildadroid/ReaciveProgramming/blocs/bloc_event_state.dart';
 import 'package:buildadroid/ReaciveProgramming/blocs/bloc_init_bloc.dart';
+import 'package:buildadroid/ReaciveProgramming/screens/auth_screen.dart';
+import 'package:buildadroid/ReaciveProgramming/screens/bloc_decision_screen.dart';
 import 'package:buildadroid/ReaciveProgramming/widgets/app_init_state.dart';
 import 'package:buildadroid/ReaciveProgramming/widgets/app_int_event.dart';
 import 'package:flutter/material.dart';
@@ -39,7 +41,7 @@ class _InitializationPageState extends State<InitializationPage> {
                   // Once the initialization is complete, let's move to another page
                   //
                   WidgetsBinding.instance.addPostFrameCallback((_){
-                    //Navigator.of(context).pushReplacementNamed('/home');
+                    Navigator.of(context).pushReplacementNamed(AuthenticationScreen.routeName);
                   });
                 }
                 return Text('Initialization in progress... ${state.progress}%');

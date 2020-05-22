@@ -29,7 +29,7 @@ class EventStateManager extends BlocEventStateBase<SplashEvent, SplashState> imp
 
 
     if(event.type ==  EventType.stop){
-      await Future.delayed(Duration(seconds: 3));
+      await Future.delayed(Duration(milliseconds: 300));
       yield SplashState.initialized();
     }
 

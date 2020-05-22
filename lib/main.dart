@@ -2,6 +2,7 @@
 // import 'package:buildadroid/Expenses/FeatureManager/FormManager.dart';
 // import 'package:buildadroid/Expenses/Home.dart';
 import 'package:buildadroid/ReaciveProgramming/main.dart';
+import 'package:buildadroid/ShoppingCartBloc/main.dart';
 import 'package:buildadroid/StateManagement/main.dart';
 import 'package:buildadroid/TimeNavigation/FeatureManager/CategoryManager.dart';
 import 'package:buildadroid/TimeNavigation/FeatureManager/FiltersManager.dart';
@@ -30,7 +31,16 @@ import 'package:sprinkle/Provider.dart';
 GetIt sl = GetIt.instance;
 
 void main(){
-  runApp(MyApp());
+  runApp(MyShopping());
+  // var map = Map();
+  //  var ingredients = new Set();
+  // ingredients.addAll(['gold', 'titanium', 'xenon']);
+  // ingredients.add({
+  //   "title": "book",
+  //   'desc': 'for read'
+  // });
+  //  print(ingredients);
+  //  print(map.runtimeType);
 }
 /*
 class MyApp extends StatelessWidget {
