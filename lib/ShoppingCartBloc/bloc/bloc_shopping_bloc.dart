@@ -52,7 +52,7 @@ class ShoppingBloc implements BlocBase {
   // but for this sample, we simply simulate
   //
   void _loadShoppingItems() {
-    _itemsController.sink.add(List<ShoppingItem>.generate(10, (int index) {
+    _itemsController.sink.add(List<ShoppingItem>.generate(3, (int index) {
       return ShoppingItem(
         id: index,
         title: "Item $index",

@@ -1,5 +1,6 @@
 import 'package:buildadroid/Expenses/FeatureManager/ExpenseManager.dart';
 import 'package:buildadroid/Expenses/FeatureManager/FormManager.dart';
+import 'package:buildadroid/Expenses/FeatureManager/register.dart';
 import 'package:buildadroid/Expenses/Models/ExpenseModel.dart';
 import 'package:buildadroid/Expenses/helpers/ensure_visible.dart';
 import 'package:flutter/material.dart';
@@ -82,9 +83,14 @@ class HomeExpenses extends StatelessWidget {
             ListTile(title: _buildNameTextFiled()),
             ListTile(title: _buildPriceTextFiled()),
             ListTile(
-              title: StreamBuilder<Object>(
-                stream: formManager.isFormValid$,
-                builder: (context, snapshot) {
+              title: Observer<bool>(
+                stream: formManager.isFormValid$, 
+                onError: (context, eeror)=> Container(),
+                onWaiting: (context)=> RaisedButton(
+                    child: Text("save"),
+                    onPressed: (){}
+                  ),
+                onSuccess: (context, data) {
                   return RaisedButton(
                     child: Text("save"),
                     onPressed: _submitForm
@@ -136,7 +142,7 @@ class HomeExpenses extends StatelessWidget {
                                       Container(
                                         height: constraints.maxHeight * .03,
                                         child: FittedBox(
-                                          child: Text('\$${data.price.toStringAsFixed(0)}'),
+                                          child: Text('\$${data.price.toString()}'),
                                         ),
                                       ),
                                       SizedBox(
@@ -226,7 +232,7 @@ class ExpenseListBulder extends StatelessWidget {
             subtitle: Text(data[index].date.toString(), style: TextStyle(color:Colors.black45, fontSize: constraints.maxHeight * .021 ),),
             leading: _buildLeading(context, data, index),
             trailing: mediaQuery.size.width < 445 
-            ? _deleteButtonOnLandscape(data, index)
+            ? _deleteButtonOnLandscape(context,data, index)
             : _deleteButtonBuild(data, index),
           
           );
@@ -247,11 +253,19 @@ class ExpenseListBulder extends StatelessWidget {
           );
   }
 
-  Widget _deleteButtonOnLandscape(List<ExpenseModel> data, int index) {
+  Widget _deleteButtonOnLandscape(context, List<ExpenseModel> data, int index) {
     return Container(
-            child: IconButton(icon: Icon(Icons.delete, color: Colors.red.shade300, ),
-            onPressed: ()=> manager.deleteTransaction(data[index].name),
+            width: mediaQuery.size.width / 4.2,
+            child: Row(
+              children: <Widget>[
+                IconButton(icon: Icon(Icons.delete, color: Colors.red.shade300, ),
+                onPressed: ()=> manager.deleteTransaction(data[index].id),
           ),
+          IconButton(icon: Icon(Icons.edit, color: Colors.blue.shade300, ),
+                onPressed: ()=> Navigator.pushNamed(context, EditExpense.routName, arguments: data[index].id,
+          ),
+          )],
+            ),
         );
   }
 
@@ -262,7 +276,7 @@ class ExpenseListBulder extends StatelessWidget {
                 children: <Widget>[
                   Text("delete", style: TextStyle(color: Colors.red.shade300),),
                   IconButton(icon: Icon(Icons.delete, color: Colors.red.shade300, ),
-                  onPressed: ()=> manager.deleteTransaction(data[index].name),
+                  onPressed: ()=> manager.deleteTransaction(data[index].id),
             ),
                 ],
               ),

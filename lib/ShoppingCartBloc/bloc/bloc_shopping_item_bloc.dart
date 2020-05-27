@@ -4,8 +4,8 @@ import 'package:rxdart/rxdart.dart';
 
 class ShoppingItemBloc implements BlocBase {
   // Stream to notify if the ShoppingItemWidget is part of the shopping basket
-  BehaviorSubject<bool> _isInShoppingBasketController = BehaviorSubject<bool>();
-  Stream<bool> get isInShoppingBasket => _isInShoppingBasketController;
+  BehaviorSubject<bool> _isInShoppingBasketController = BehaviorSubject<bool>.seeded(false);
+  Stream<bool> get isInShoppingBasket => _isInShoppingBasketController.stream;
 
   // Stream that receives the list of all items, part of the shopping basket
   PublishSubject<List<ShoppingItem>> _shoppingBasketController = PublishSubject<List<ShoppingItem>>();

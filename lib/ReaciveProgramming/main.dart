@@ -1,10 +1,10 @@
 import 'package:buildadroid/ReaciveProgramming/blocs/bloc_auth_bloc.dart';
-import 'package:buildadroid/ReaciveProgramming/blocs/bloc_example.dart';
+// import 'package:buildadroid/ReaciveProgramming/blocs/bloc_example.dart';
 import 'package:buildadroid/ReaciveProgramming/blocs/bloc_provider.dart';
-import 'package:buildadroid/ReaciveProgramming/blocs/bloc_singleton.dart';
-import 'package:buildadroid/ReaciveProgramming/screens/auth_screen.dart';
+// import 'package:buildadroid/ReaciveProgramming/blocs/bloc_singleton.dart';
+// import 'package:buildadroid/ReaciveProgramming/screens/auth_screen.dart';
 import 'package:buildadroid/ReaciveProgramming/screens/bloc_decision_screen.dart';
-import 'package:buildadroid/ReaciveProgramming/screens/initializationPage.dart';
+// import 'package:buildadroid/ReaciveProgramming/screens/initializationPage.dart';
 import 'package:flutter/material.dart';
 
 

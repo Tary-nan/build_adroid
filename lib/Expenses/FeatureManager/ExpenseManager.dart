@@ -6,6 +6,7 @@ import 'package:rxdart/rxdart.dart';
 class ExpenseManager implements Manager {
 
   List<ExpenseModel> _data = DataProvider.data;
+
   // Controller
   BehaviorSubject<List<ExpenseModel>> _collectionSubject = BehaviorSubject();
   BehaviorSubject<bool> _swicth = BehaviorSubject.seeded(false);
@@ -14,18 +15,54 @@ class ExpenseManager implements Manager {
   Stream<List<ExpenseModel>> get collection$ => _collectionSubject.stream; 
   Stream<bool> get switch$ => _swicth.stream; 
 
+  void _notify(){
+    _collectionSubject.sink.add(_data);
+  }
+
   void setSwitch(bool value)=> _swicth.sink.add(value);
+
+  ExpenseModel findById(String id)=> _data.firstWhere((expense)=> expense.id == id);
+  
+  void updateExpense(String expenseId, ExpenseModel expense){
+    var newExpense = ExpenseModel(
+      id: expense.id,
+      name: expense.name,
+      price: expense.price,
+      date: DateTime.now(),
+    );
+    
+    final existingIndex = _data.indexWhere((expense)=> expense.id == expenseId);
+    if (existingIndex >= 0) {
+      // new product
+      _data[existingIndex] = newExpense;
+      _notify();
+    }
+  }
 
   // Input
 
- void addTransaction(ExpenseModel value){
-   _data.insert(0, value);
-   _collectionSubject.sink.add(_data);
+ void addTransaction(ExpenseModel expense){
+   var newExpense = ExpenseModel(
+     id: DateTime.now().toString(),
+     name: expense.name,
+     price: expense.price,
+     date: expense.date
+  );
+   _data.insert(0, newExpense);
+   _notify();
  }
 
- void deleteTransaction(String title){
-   _data.removeWhere((x)=> x.name == title);
-   _collectionSubject.add(_data);
+ void deleteTransaction(String expenseId){
+  //  _data.removeWhere((x)=> x.id == expenseId); use on local 
+  final existingIndex = _data.indexWhere((expense)=> expense.id == expenseId);
+  if (existingIndex >= 0) {
+      _data.removeAt(existingIndex);
+      // new product
+      // var existingProduct =_data[existingIndex]; 
+      // use with a server lorsque statusCosde >= 400 
+      // on remet a sa place _data.insert(existingIndex, existingProduct);
+      _notify();
+    }
  }
 
   List<ExpenseModel> get recentTransactions {

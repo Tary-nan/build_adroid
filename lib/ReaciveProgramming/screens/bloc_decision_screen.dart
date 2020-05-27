@@ -7,7 +7,7 @@ import 'package:buildadroid/ReaciveProgramming/screens/home_screen.dart';
 import 'package:buildadroid/ReaciveProgramming/screens/initializationPage.dart';
 import 'package:flutter/material.dart';
 
-import 'auth_screen.dart';
+// import 'auth_screen.dart';
 
 class DecisionPage extends StatefulWidget {
   static const routeName = '/decision';

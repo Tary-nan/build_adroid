@@ -1,7 +1,7 @@
 import 'package:buildadroid/ReaciveProgramming/blocs/bloc_event_state.dart';
 import 'package:buildadroid/ReaciveProgramming/blocs/bloc_init_bloc.dart';
 import 'package:buildadroid/ReaciveProgramming/screens/auth_screen.dart';
-import 'package:buildadroid/ReaciveProgramming/screens/bloc_decision_screen.dart';
+// import 'package:buildadroid/ReaciveProgramming/screens/bloc_decision_screen.dart';
 import 'package:buildadroid/ReaciveProgramming/widgets/app_init_state.dart';
 import 'package:buildadroid/ReaciveProgramming/widgets/app_int_event.dart';
 import 'package:flutter/material.dart';

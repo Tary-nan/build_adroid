@@ -137,23 +137,23 @@ class _AuthCardState extends State<AuthCard>
     _controller.dispose();
   }
 
-  void _showErrorDialog(String message) {
-    showDialog(
-      context: context,
-      builder: (ctx) => AlertDialog(
-            title: Text('An Error Occurred!'),
-            content: Text(message),
-            actions: <Widget>[
-              FlatButton(
-                child: Text('Okay'),
-                onPressed: () {
-                  Navigator.of(ctx).pop();
-                },
-              )
-            ],
-          ),
-    );
-  }
+  // void _showErrorDialog(String message) {
+  //   showDialog(
+  //     context: context,
+  //     builder: (ctx) => AlertDialog(
+  //           title: Text('An Error Occurred!'),
+  //           content: Text(message),
+  //           actions: <Widget>[
+  //             FlatButton(
+  //               child: Text('Okay'),
+  //               onPressed: () {
+  //                 Navigator.of(ctx).pop();
+  //               },
+  //             )
+  //           ],
+  //         ),
+  //   );
+  // }
 
   Future<void> _submit() async {
     if (!_formKey.currentState.validate()) {
