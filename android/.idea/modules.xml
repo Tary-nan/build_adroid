@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/android.iml" filepath="$PROJECT_DIR$/.idea/modules/android.iml" group="android" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/app.iml" group="android/app" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1164359860/connectivity.iml" filepath="$PROJECT_DIR$/.idea/modules/1164359860/connectivity.iml" group="android/connectivity" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1255006749/connectivity_macos.iml" filepath="$PROJECT_DIR$/.idea/modules/1255006749/connectivity_macos.iml" group="android/connectivity_macos" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-31656453/path_provider.iml" filepath="$PROJECT_DIR$/.idea/modules/-31656453/path_provider.iml" group="android/path_provider" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-202308249/path_provider_macos.iml" filepath="$PROJECT_DIR$/.idea/modules/-202308249/path_provider_macos.iml" group="android/path_provider_macos" />
+    </modules>
+  </component>
+</project>
